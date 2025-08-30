@@ -10,6 +10,9 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
+  // ✅ API URL from environment variable
+  const API = import.meta.env.VITE_API_URL;
+
   const handleSignup = async (e) => {
     e.preventDefault();
 
@@ -19,7 +22,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/register", {
+      const response = await axios.post(`${API}/api/auth/signup`, {
         username,
         email,
         password,
@@ -35,14 +38,16 @@ const Signup = () => {
   };
 
   return (
-    <div className="auth-container" style={{
-      background: 'linear-gradient(135deg, #a8edea, #fed6e3)',
-      height: '100vh',
-      width: '100vw',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}
+    <div
+      className="auth-container"
+      style={{
+        background: "linear-gradient(135deg, #a8edea, #fed6e3)",
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
       <div className="auth-box">
         <h2>Sign Up</h2>
@@ -74,7 +79,7 @@ const Signup = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-          />  
+          />
           <button type="submit">Sign Up</button>
           <div className="switch-link">
             Already have an account? <Link to="/login">Login</Link>
