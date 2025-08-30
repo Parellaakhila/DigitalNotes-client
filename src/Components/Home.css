@@ -1,0 +1,74 @@
+/* Full-screen background video */
+.homepage-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .homepage-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Keeps video scaled and covers the screen */
+    z-index: -1; /* Push behind content */
+  }
+  
+  /* Dark overlay for text readability */
+  .homepage-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent black */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;  
+    padding: 20px;
+  }
+  
+  /* Heading and subtext */
+  .homepage-overlay h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .homepage-overlay p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Buttons */
+  .homepage-overlay .button {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    background: #3498db;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .homepage-overlay .button.signup {
+    background: #2ecc71;
+  }
+  
+  .homepage-overlay .button:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+  }
+  
+  .homepage-overlay .button.signup:hover {
+    background: #27ae60;
+  }
+  

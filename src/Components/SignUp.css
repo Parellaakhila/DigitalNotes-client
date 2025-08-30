@@ -1,0 +1,108 @@
+/* Pastel gradient background */
+.auth-container {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  padding: 1rem;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;   
+  left: 0;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* Glassmorphism effect for the box */
+.auth-box {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  border: 2px solid #6c63ff; /* Pastel purple border */
+  padding: 2.8rem 2rem;
+  border-radius: 1.8rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 420px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 1.8rem;
+  color: #6c63ff; /* pastel purple */
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.auth-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-box input {
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 1rem;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.auth-box input:focus {
+  border-color: #6c63ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.3);
+}
+
+/* Gradient buttons */
+.auth-box button {
+  padding: 0.9rem 1rem;
+  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.auth-box button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #66a6ff, #89f7fe);
+  box-shadow: 0 8px 20px rgba(102, 166, 255, 0.5);
+}
+
+.switch-link {
+  margin-top: 1.2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.switch-link a {
+  color: #6c63ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switch-link a:hover {
+  text-decoration: underline;
+  color: #5848c2;
+}
+
+/* Subtle entry animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
