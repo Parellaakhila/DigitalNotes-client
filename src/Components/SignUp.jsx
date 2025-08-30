@@ -10,8 +10,8 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-  // ✅ API URL from environment variable
-  const API = import.meta.env.VITE_API_URL;
+  // API base URL (from Vercel .env or fallback)
+  const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -22,7 +22,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post(`${API}/api/auth/signup`, {
+      const response = await axios.post(`${API}/api/auth/register`, {
         username,
         email,
         password,
@@ -32,6 +32,7 @@ const Signup = () => {
       alert("Signup successful!");
       navigate("/login");
     } catch (err) {
+      console.error("Signup error:", err.response || err.message); // 👈 debug log
       const error = err.response?.data?.error || "Signup failed. Try again.";
       alert(error);
     }
