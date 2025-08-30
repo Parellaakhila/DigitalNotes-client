@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -11,75 +10,70 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // ✅ Use environment variable for API
+  const API = import.meta.env.VITE_API_URL;
+
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     if (email.trim() === '' || password.trim() === '') {
       setError('Please fill in all fields.');
       return;
     }
-  
+
     try {
       setLoading(true);
       setError('');
-      
+
       console.log('Attempting login with:', { email, password: '***' });
-      
-      // POST request to backend login API
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+
+      // ✅ Use dynamic API instead of localhost
+      const response = await axios.post(`${API}/api/auth/login`, {
         email,
         password,
       });
-  
+
       console.log('Login response:', response.data);
-      
+
       const { token, user } = response.data;
-  
-      // Save token and user info in localStorage (consistent with other components)
+
       localStorage.setItem('token', token);
       localStorage.setItem('userId', user._id || user.id);
       localStorage.setItem('username', user.username || user.name);
       localStorage.setItem('email', user.email);
-  
-      console.log('Stored in localStorage:', {
-        token: token ? 'present' : 'missing',
-        userId: user._id || user.id,
-        username: user.username || user.name,
-        email: user.email
-      });
-  
-      // Clear any previous error
+
       setError('');
-      
-      // Navigate to dashboard
       navigate('/dashboard');
     } catch (err) {
       console.error('Login error details:', {
         message: err.message,
         response: err.response?.data,
         status: err.response?.status,
-        statusText: err.response?.statusText
+        statusText: err.response?.statusText,
       });
-      
-      const errorMessage = err.response?.data?.error || err.response?.data?.message || 'Login failed. Please check your credentials and try again.';
+
+      const errorMessage =
+        err.response?.data?.error ||
+        err.response?.data?.message ||
+        'Login failed. Please check your credentials and try again.';
       setError(errorMessage);
     } finally {
       setLoading(false);
     }
   };
-  
+
   return (
     <div className="auth-container">
       <div className="auth-box">
         <h2>Welcome Back! 👋</h2>
         <p className="auth-subtitle">Sign in to access your notes</p>
-        
+
         {error && (
           <div className="error-message">
             <span>⚠️</span> {error}
           </div>
         )}
-        
+
         <form onSubmit={handleLogin}>
           <div className="input-group">
             <label htmlFor="email">Email</label>
@@ -96,7 +90,7 @@ const Login = () => {
 
           <div className="input-group">
             <label htmlFor="password">Password</label>
-            <input   
+            <input
               id="password"
               type="password"
               placeholder="Enter your password"
